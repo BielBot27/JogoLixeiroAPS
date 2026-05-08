@@ -251,8 +251,9 @@ public class Tela extends JPanel implements ActionListener, KeyListener {
 			player.mover(up, down, left, right);
 
 			// atualizar inimigos
+			boolean playerMovendo = up || down || left || right;
 			for (Inimigo i : inimigos) {
-				if (i.atualizar()) {
+				if (i.atualizar(playerMovendo)) {
 					pecas.add(new Peca(i.getX() + 10, i.getY() + 10)); // inimigo soltou peça
 				}
 			}

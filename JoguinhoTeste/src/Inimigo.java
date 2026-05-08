@@ -76,7 +76,7 @@ public class Inimigo extends Entidade {
 		return y;
 	}
 
-	public boolean atualizar() {
+	public boolean atualizar(boolean playerMovendo) {
 		
 		// movimento lateral
 		x += velocidade * direcao;
@@ -90,12 +90,14 @@ public class Inimigo extends Entidade {
 	        x = larguraTela;
 	    }
 
-		// lógica de soltar peça
-		contadorDrop++;
+		// lógica de soltar peça (só dropa se o player estiver se movendo)
+		if (playerMovendo) {
+			contadorDrop++;
 
-		if (contadorDrop >= tempoDrop) {
-			contadorDrop = 0;
-			return true; // sinaliza que deve criar uma peça
+			if (contadorDrop >= tempoDrop) {
+				contadorDrop = 0;
+				return true; // sinaliza que deve criar uma peça
+			}
 		}
 
 		return false;
@@ -109,9 +111,9 @@ public class Inimigo extends Entidade {
 
 	public void desenhar(Graphics g) {
 		
-		int frameAtual = (int)((System.currentTimeMillis() / 150) % 4);;
+		int frameAtual = (int)((System.currentTimeMillis() / 150) % 4);
 		
-		g.drawImage(sprite, x, y, tamanho, tamanho, null);
+		g.drawImage(frames[frameAtual], x, y, tamanho, tamanho, null);
 	}
 
 }
