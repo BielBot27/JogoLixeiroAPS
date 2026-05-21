@@ -49,7 +49,7 @@ public class Inimigo extends Entidade {
 		}
 		
 		try {
-		    sprite = ImageIO.read(getClass().getResource("/sprites/carrinho.png"));
+		    sprite = ImageIO.read(getClass().getResource("/Sprites/carrinho.png"));
 		    
 		    frames = new BufferedImage[4];
 		    

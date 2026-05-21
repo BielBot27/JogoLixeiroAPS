@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Rodar Jogo",
+            "request": "launch",
+            "mainClass": "Jogo",
+            "projectName": "JoguinhoTeste",
+            "classPaths": ["${workspaceFolder}/bin"],
+            "sourcePaths": ["${workspaceFolder}/src"],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

@@ -88,13 +88,13 @@ public class Tela extends JPanel implements ActionListener, KeyListener {
 		}
 
 		try {
-			background = ImageIO.read(getClass().getResource("/sprites/background.png"));
+			background = ImageIO.read(getClass().getResource("/Sprites/background.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-		    coracao = ImageIO.read(getClass().getResource("/sprites/heart.png"));
+		    coracao = ImageIO.read(getClass().getResource("/Sprites/heart.png"));
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
@@ -374,31 +374,38 @@ public class Tela extends JPanel implements ActionListener, KeyListener {
 
 		// game over
 		if (gameOver) {
-			
-			//fundo escuro transparente
+
+			int largura = getWidth();
+			int altura  = getHeight();
+
+			// fundo escuro transparente
 			g.setColor(new Color(0, 0, 0, 180));
-			g.fillRect(0, 0, getWidth(), getHeight());
-			
+			g.fillRect(0, 0, largura, altura);
+
+			FontMetrics fm;
+
 			// texto GAME OVER
-		    g.setColor(Color.RED);
-		    g.setFont(new Font("Arial", Font.BOLD, 50));
-		    g.drawString("GAME OVER", 210, 200);
-			
-			// mostrar nivel
+			g.setColor(Color.RED);
+			g.setFont(new Font("Arial", Font.BOLD, 50));
+			fm = g.getFontMetrics();
+			String txtGameOver = "GAME OVER";
+			g.drawString(txtGameOver, (largura - fm.stringWidth(txtGameOver)) / 2, altura / 2 - 100);
+
+			// pontuação final
 			g.setColor(Color.WHITE);
-			g.setFont(new Font("Arial", Font.BOLD, 18));
-			g.drawString("Nível: " + nivel, 10, 90);
+			g.setFont(new Font("Arial", Font.BOLD, 25));
+			fm = g.getFontMetrics();
+			String txtPontos = "Pontuação: " + pontos;
+			g.drawString(txtPontos, (largura - fm.stringWidth(txtPontos)) / 2, altura / 2 - 20);
 
-		    // pontuação final
-		    g.setColor(Color.WHITE);
-		    g.setFont(new Font("Arial", Font.BOLD, 25));
-		    g.drawString("Pontuação: " + pontos, 290, 260);
+			// recorde
+			String txtRecorde = "Recorde: " + recorde;
+			g.drawString(txtRecorde, (largura - fm.stringWidth(txtRecorde)) / 2, altura / 2 + 20);
 
-		    // recorde
-		    g.drawString("Recorde: " + recorde, 290, 300);
-
-		    // mostra botão
-		    botaoReiniciar.setVisible(true);
+			// centraliza o botão
+			int btnW = 200, btnH = 50;
+			botaoReiniciar.setBounds((largura - btnW) / 2, altura / 2 + 60, btnW, btnH);
+			botaoReiniciar.setVisible(true);
 		}
 	}
 		
