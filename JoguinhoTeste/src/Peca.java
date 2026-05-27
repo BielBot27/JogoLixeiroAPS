@@ -25,7 +25,7 @@ public class Peca extends Entidade {
 	}
 	
 	public void desenhar(Graphics g) {
-		g.drawImage(imagem, x, y, null);
+		g.drawImage(imagem, x, y, tamanho, tamanho, null);
 	}
 
 }
